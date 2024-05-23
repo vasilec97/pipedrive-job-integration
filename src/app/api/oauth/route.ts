@@ -1,4 +1,5 @@
 import { PIPEDRIVE_OAUTH_TOKEN } from "@/shared/const/pipedriveEndpoints";
+import { Routes } from "@/shared/const/routes";
 import { PipedriveOAuthResponse } from "@/shared/types/oauth";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -22,7 +23,7 @@ export async function GET(req: NextRequest) {
       body: new URLSearchParams({
         grant_type: 'authorization_code',
         code: code || '',
-        redirect_uri: 'http://localhost:3000/api/oauth'
+        redirect_uri: `${process.env.NEXT_PUBLIC_API}/oauth`
       })
     })
     const data = await tokenRespponse.json() as PipedriveOAuthResponse
@@ -33,7 +34,7 @@ export async function GET(req: NextRequest) {
     console.log('Error on oauth server route handler: ', err)
   }
 
-  const response = NextResponse.redirect(`http://localhost:3000/oauth-callback?token=${access_token}`)
+  const response = NextResponse.redirect(`${process.env.CLIENT_URL}${Routes.OAUTH}?token=${access_token}`)
   response.cookies.set({
     name: 'refresh_token',
     value: refresh_token || '',

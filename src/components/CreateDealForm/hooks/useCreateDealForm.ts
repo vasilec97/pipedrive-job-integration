@@ -5,8 +5,12 @@ import { getDealFields } from "../services/getDealFields"
 import { fieldsExist } from "@/components/CreateDealForm/utils/filedsExist"
 import { DEALS } from "@/shared/const/pipedriveEndpoints"
 import { $fetch } from "@/shared/api/fetch"
+import { useRouter } from "next/navigation"
+import { Routes } from "@/shared/const/routes"
+import { getFieldValue } from "@/components/CreateDealForm/utils/getFiledValue"
 
 export const useCreateDealForm = () => {
+  const router = useRouter()
   const [firstName, setFirstName] = useState<string>('')
   const [lastName, setLastName] = useState<string>('')
   const [phone, setPhone] = useState<string>('')
@@ -128,10 +132,12 @@ export const useCreateDealForm = () => {
       dealFields.forEach(({ key, id, name }) => {
         if (fieldsToUpdateMap.hasOwnProperty(name)) {
           const fieldName = name as keyof typeof fieldsToUpdateMap
+          const value = getFieldValue(name, fieldsToUpdateMap[fieldName])
+          
           const promise = $fetch(`${DEALS}/${dealId}`, {
             method: 'PUT',
             body: JSON.stringify({
-              [key]: fieldsToUpdateMap[fieldName]
+              [key]: value
             })
           })
           fieldsToUpdatePromises.push(promise)
@@ -152,6 +158,12 @@ export const useCreateDealForm = () => {
 
       const updateResponse = await Promise.all(fieldsToUpdatePromises)
       await Promise.all(updateResponse.map(res => res.json()))
+
+      const redirectSearchParams = new URLSearchParams({
+        jobId: String(dealId)
+      })
+
+      router.push(`${Routes.JOB}?${redirectSearchParams.toString()}`)
     } catch (err) {
       console.warn('Submit Error: ', err)
     } finally {
