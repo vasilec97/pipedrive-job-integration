@@ -1,0 +1,18 @@
+.Input {
+  font-family: '__Inter_aaf875', '__Inter_Fallback_aaf875';
+  min-width: 50px;
+  color: var(--primary-text-color);
+  font-size: 14px;
+  line-height: 24px;
+  align-items: center;
+  gap: 9px;
+  padding: 6px;
+  font-weight: 400;
+  outline: none;
+  border: 1.5px solid #b5b5b5;
+  border-radius: 5px;
+
+  &.full {
+    width: 100%;
+  }
+}
