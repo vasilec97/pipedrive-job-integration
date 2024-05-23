@@ -15,4 +15,8 @@
   &.full {
     width: 100%;
   }
+
+  &:focus-visible {
+    outline: 1px solid black;
+  }
 }

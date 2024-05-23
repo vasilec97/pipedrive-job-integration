@@ -2,6 +2,7 @@ import React, {
   DetailedHTMLProps,
   forwardRef,
   InputHTMLAttributes,
+  memo,
   useState,
 } from 'react'
 import cls from './Input.module.css'
@@ -17,7 +18,7 @@ type InputPropsType = DefaultInputPropsType & {
   full?: boolean
 }
 
-export const Input = forwardRef<HTMLInputElement, InputPropsType>((props, ref) => {
+export const Input = memo(forwardRef<HTMLInputElement, InputPropsType>((props, ref) => {
   const {
     error,
     className,
@@ -37,6 +38,6 @@ export const Input = forwardRef<HTMLInputElement, InputPropsType>((props, ref) =
       data-testid="input"
     />
   )
-})
+}))
 
 Input.displayName = 'Input'
