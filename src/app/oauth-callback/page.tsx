@@ -1,8 +1,9 @@
 'use client'
 
 import { redirect, useSearchParams } from "next/navigation"
+import { Suspense } from "react"
 
-export default function Page() {
+const Page = () => {
   const sp = useSearchParams()
   const token = sp.get('token')
 
@@ -11,4 +12,12 @@ export default function Page() {
   }
 
   redirect('http://localhost:3000')
+}
+
+export default function SuspensePage() {
+  return (
+    <Suspense>
+      <Page />
+    </Suspense>
+  )
 }
