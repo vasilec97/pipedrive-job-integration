@@ -122,6 +122,7 @@ export const useCreateDealForm = () => {
 
       const dealFields = fieldsExist(existedDealFields)
         ? existedDealFields
+        // @ts-ignore
         : (await createDealFields()).map(res => res.data)
 
       dealFields.forEach(({ key, id, name }) => {
@@ -139,7 +140,6 @@ export const useCreateDealForm = () => {
         const technicianNameArr = name.split(' ')
 
         if (technicianNameArr[1]?.toLowerCase() == 'technician' && technicianNameArr[0] == area) {
-          console.log('Technican to update: ', technicianNameArr)
           const promise = $fetch(`${DEALS}/${dealId}`, {
             method: 'PUT',
             body: JSON.stringify({

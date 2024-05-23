@@ -2,10 +2,11 @@ import { $fetch } from "@/shared/api/fetch"
 import { DEAL_FIELDS_MAP } from "../const/dealFields"
 import { DEAL_FIELDS } from "@/shared/const/pipedriveEndpoints"
 
-type CreateDealFieldsResponse = Promise<Array<{ data: { id: number, key: string, name: string }}>>
+type CreateDealFieldsResponse = Promise<Array<{
+   data: { id: number, key: string, name: string }
+}>>
 
 export const createDealFields = async () => {
-  console.log('Create Custom Field Endpoint Has Been Called Again!')
   const dealFields = DEAL_FIELDS_MAP()
   const promises = dealFields.map(({ name, value }) => {
     let field_type = ''

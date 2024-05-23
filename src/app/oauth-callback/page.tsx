@@ -7,7 +7,6 @@ export default function Page() {
   const token = sp.get('token')
 
   if (token) {
-    console.log('New token was created!')
     localStorage.setItem('token', token)
   }
 
