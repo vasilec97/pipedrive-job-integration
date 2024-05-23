@@ -21,18 +21,18 @@ export const SheduledCard = () => {
     <FormCard title="Sheduled">
       <Input type="date" value={jobDate} onChange={onJobDateChange} min={getTodayDate()} required full />
       <div className="flex row fieldGap">
-        <select value={jobStartTime} onChange={onJobStartTimeChange} className='w-full'>
+        <select value={jobStartTime} onChange={onJobStartTimeChange} className='w-full' required>
           {getTimeItems().map(({ value, name }) => {
             return <option key={value} value={value}>{name}</option>
           })}
         </select>
-        <select value={jobEndTime} onChange={onJobEndTimeChange} className='w-full'>
+        <select value={jobEndTime} onChange={onJobEndTimeChange} className='w-full' required>
           {getTimeItems().map(({ value, name }) => {
             return <option key={value} value={value}>{name}</option>
           })}
         </select>
       </div>
-      <select value={technician} onChange={onTechnicianChange} className='w-full'>
+      <select value={technician} onChange={onTechnicianChange} className='w-full' required>
         <option value="" disabled hidden>Select technician</option>
         <option value="Jon Doe">Jon Doe</option>
         <option value="Lorem Ipsum">Lorem Ipsum</option>

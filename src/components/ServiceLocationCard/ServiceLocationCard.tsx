@@ -24,7 +24,7 @@ export const ServiceLocationCard = () => {
       <Input placeholder='State' value={state} onChange={onStateChange} required full />
       <div className="flex row fieldGap">
         <Input placeholder="Zip code" value={zipCode} onChange={onZipCodeChange} pattern="^[0-9]*$" required full />
-        <select className="w-full" value={area} onChange={onAreaChange}>
+        <select className="w-full" value={area} onChange={onAreaChange} required>
           <option value="" disabled hidden>Select area</option>
           <option value="Tampa">Tampa</option>
           <option value="Miami">Miami</option>
