@@ -1,7 +1,7 @@
 'use client'
 
 import { CreateDealForm } from '@/components/CreateDealForm/CreateDealForm'
-import cls from './Page.module.css'
+import cls from './page.module.css'
 import { CreateDealFormProvider } from '@/app/providers/CreateDealProvider/CreateDealProvider'
 
 export default function Home() {
